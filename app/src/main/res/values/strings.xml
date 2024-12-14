@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <string name="app_name">Burnify</string>
+        <string name="app_name">YourAppName</string> <!-- Replace with your app's name -->
+        <string name="channel_name">Activity Recognition Service</string>
+        <string name="channel_description">Channel for Activity Recognition Service notifications</string>
+        <string name="notification_title">Activity Recognition Service</string>
+        <string name="notification_message">Detecting activities...</string>
 </resources>
