@@ -1,7 +1,6 @@
 package com.example.burnify.service
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -68,18 +67,13 @@ class ActivityRecognitionService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        // We are handling the permission check right here
-        try {
-            requestActivityUpdates()
-        } catch (e: SecurityException) {
-            Log.e("ActivityRecognitionService", "SecurityException: ${e.message}")
-            // Handle the exception accordingly
-        }
+        Log.d("ActivityRecognitionService", "Service started")
+        requestActivityUpdates()
         return START_STICKY
     }
 
     private fun requestActivityUpdates() {
-        // Check if the permission is granted before proceeding
+        // Check if permissions are granted before making the call
         if (hasRequiredPermissions()) {
             try {
                 val task: Task<Void> = activityRecognitionClient.requestActivityUpdates(DETECTION_INTERVAL_IN_MILLISECONDS, pendingIntent)
@@ -90,16 +84,31 @@ class ActivityRecognitionService : Service() {
                     Log.e("ActivityRecognitionService", "Failed to request activity updates.", e)
                 }
             } catch (e: SecurityException) {
-                Log.e("ActivityRecognitionService", "SecurityException while requesting activity updates: ${e.message}")
-                // Handle the exception accordingly
-                val broadcastIntent = Intent("permission_denied")
-                sendBroadcast(broadcastIntent)
+                Log.e("ActivityRecognitionService", "SecurityException: ${e.message}")
             }
         } else {
             Log.e("ActivityRecognitionService", "Permission not granted")
-            // Notify the main activity that permission is denied
             val broadcastIntent = Intent("permission_denied")
             sendBroadcast(broadcastIntent)
+        }
+    }
+
+    private fun removeActivityUpdates() {
+        // Check if permissions are granted before making the call
+        if (hasRequiredPermissions()) {
+            try {
+                val task = activityRecognitionClient.removeActivityUpdates(pendingIntent)
+                task.addOnSuccessListener {
+                    Log.d("ActivityRecognitionService", "Activity updates removed")
+                }
+                task.addOnFailureListener { e ->
+                    Log.e("ActivityRecognitionService", "Failed to remove activity updates", e)
+                }
+            } catch (e: SecurityException) {
+                Log.e("ActivityRecognitionService", "SecurityException: ${e.message}")
+            }
+        } else {
+            Log.e("ActivityRecognitionService", "Permission not granted")
         }
     }
 
@@ -115,17 +124,6 @@ class ActivityRecognitionService : Service() {
     override fun onDestroy() {
         removeActivityUpdates()
         super.onDestroy()
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun removeActivityUpdates() {
-        val task = activityRecognitionClient.removeActivityUpdates(pendingIntent)
-        task.addOnSuccessListener {
-            Log.d("ActivityRecognitionService", "Activity updates removed")
-        }
-        task.addOnFailureListener { e ->
-            Log.e("ActivityRecognitionService", "Failed to remove activity updates", e)
-        }
     }
 
     override fun onBind(intent: Intent?): IBinder? {

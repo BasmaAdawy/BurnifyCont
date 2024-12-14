@@ -9,4 +9,22 @@
         android:layout_height="wrap_content"
         android:text="Start Activity Recognition Service"
         android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/activity_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/start_service_button"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:padding="16dp"/>
+
+    <TextView
+        android:id="@+id/calories_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_text_view"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:padding="16dp"/>
 </RelativeLayout>
