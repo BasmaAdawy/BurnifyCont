@@ -47,7 +47,8 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.7.5") // Usa la versione più recente
     implementation("androidx.compose.material3:material3:1.3.1") // Usa la versione di Material 3
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
-    implementation(libs.androidx.adapters) // O l'ultima versione disponibile
+    implementation(libs.androidx.adapters)
+    implementation(libs.androidx.appcompat) // O l'ultima versione disponibile
         // debugImplementation because LeakCanary should only run in debug builds.
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
     implementation ("com.google.code.gson:gson:2.10.1") // Aggiungi questa dipendenza
@@ -60,6 +61,17 @@ dependencies {
     implementation ("org.tensorflow:tensorflow-lite-support:0.4.4")
     implementation ("org.tensorflow:tensorflow-lite-select-tf-ops:2.14.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.0.0")
+    implementation("com.squareup.leakcanary:leakcanary-android:2.14")
+
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
     dependencies {

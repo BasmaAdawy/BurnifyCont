@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- TextView for displaying the detected activity -->
+    <TextView
+        android:id="@+id/tv_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detected Activity: None"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- TextView for displaying the confidence level -->
+    <TextView
+        android:id="@+id/tv_confidence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confidence: 0%"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- TextView for displaying the calories burned -->
+    <TextView
+        android:id="@+id/tv_calories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calories Burned: 0.0"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>
